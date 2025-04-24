@@ -14,6 +14,7 @@ const AddVideoScreen = () => {
     const router = useRouter();
     const cropMutation = useCropVideo();
     const setVideo = useVideoStore((state) => state.setVideo);
+    const addVideo = useVideoStore((state) => state.addVideo);
 
     const { control, handleSubmit } = useVideoForm();
 
@@ -32,10 +33,23 @@ const AddVideoScreen = () => {
     const handleCropVideo = ({ title, description }: { title: string; description: string }) => {
         if (!videoUri) return;
         cropMutation.mutate(
-            { uri: videoUri, start, title, description },
+            { uri: videoUri, start },
             {
-                onSuccess: (newVideo) => {
-                    setVideo(newVideo);
+                onSuccess: (corpedVideo) => {
+                    setVideo({
+                        ...corpedVideo,
+                        title,
+                        description,
+                        originalUri: videoUri,
+                        originalDuration: videoDuration,
+                    });
+                    addVideo({
+                        ...corpedVideo,
+                        title,
+                        description,
+                        originalUri: videoUri,
+                        originalDuration: videoDuration,
+                    });
                     router.replace('/(main)/VideoDetailScreen');
                 },
             }
