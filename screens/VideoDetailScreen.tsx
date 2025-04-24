@@ -1,22 +1,23 @@
-import { View } from "react-native";
-import { Header, VideoPlayer } from "@/components";
-import { Button, Card, CardDescription, CardHeader, CardTitle, Label, Text } from "@/components/ui";
-import { SafeAreaView } from "react-native-safe-area-context";
-import useVideoStore from "@/store/useVideoStore";
-import { useRouter } from "expo-router";
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { Header, VideoPlayer } from '@/components';
+import { Button, Card, CardDescription, CardHeader, CardTitle, Label, Text } from '@/components/ui';
+import useVideoStore from '@/store/useVideoStore';
 
 const VideoDetailScreen = () => {
     const router = useRouter();
-    const video = useVideoStore(state => state.video);
+    const video = useVideoStore((state) => state.video);
 
     const handleEditVideo = () => {
-        router.replace("/(main)/EditVideoScreen");
-    }
+        router.replace('/(main)/EditVideoScreen');
+    };
 
     return (
-        <SafeAreaView className='flex-1 gap-5 bg-secondary/30'>
+        <SafeAreaView className="flex-1 gap-5 bg-secondary/30">
             <Header iconName="back" title="Video Detail" />
-            <View className="flex-1 p-5 justify-between">
+            <View className="flex-1 justify-between p-5">
                 <View className="gap-5">
                     <Card>
                         <CardHeader>
@@ -35,8 +36,8 @@ const VideoDetailScreen = () => {
                     </Button>
                 </View>
             </View>
-        </SafeAreaView >
+        </SafeAreaView>
     );
-}
+};
 
 export default VideoDetailScreen;
