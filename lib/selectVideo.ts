@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 
-const pickVideo = async (): Promise<ImagePicker.ImagePickerAsset | null> => {
+const selectVideo = async (): Promise<ImagePicker.ImagePickerAsset | null> => {
     const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: 'videos',
         allowsEditing: false,
@@ -15,4 +15,4 @@ const pickVideo = async (): Promise<ImagePicker.ImagePickerAsset | null> => {
     return null;
 };
 
-export default pickVideo;
+export default selectVideo;

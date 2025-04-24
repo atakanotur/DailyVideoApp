@@ -1,20 +1,21 @@
 import { useState } from 'react';
-import { View, StyleProp, TextStyle, ViewStyle, Pressable } from 'react-native';
-import { Text, Input } from '@/components/ui';
 import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form';
+import { View, StyleProp, TextStyle, ViewStyle, Pressable } from 'react-native';
+
+import { Text, Input } from '@/components/ui';
 
 type ControlledInputProps<TFieldValues extends FieldValues> = {
     control: Control<TFieldValues>;
     name: FieldPath<TFieldValues>;
-    placeholder: string;
+    placeholder?: string;
     value?: string;
     secureTextEntry?: boolean;
     style?: StyleProp<TextStyle>;
-    containerStyle?: StyleProp<ViewStyle>
-    onChangeText?: ((text: string) => void)
-    defaultValue?: string | undefined
-    editable?: boolean
-}
+    containerStyle?: StyleProp<ViewStyle>;
+    onChangeText?: (text: string) => void;
+    defaultValue?: string | undefined;
+    editable?: boolean;
+};
 
 const ControlledInput = <TFieldValues extends FieldValues>({
     control,
@@ -29,17 +30,13 @@ const ControlledInput = <TFieldValues extends FieldValues>({
     editable,
     ...otherProps
 }: ControlledInputProps<TFieldValues>) => {
-    const [passwordVisible, setPasswordVisible] = useState<boolean>(secureTextEntry ? true : false);
-    const [selectionName, setSelectionName] = useState<string>("");
-    const onFocus = () => setSelectionName(name);
-    const onBlur = () => setSelectionName("");
+    const [passwordVisible, setPasswordVisible] = useState<boolean>(!!secureTextEntry);
 
     return (
         <Controller
             control={control}
             name={name}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
-                console.log("error : ", error),
                 <>
                     <View>
                         <Input
@@ -47,16 +44,15 @@ const ControlledInput = <TFieldValues extends FieldValues>({
                             value={value}
                             placeholder={error ? error.message : placeholder}
                             secureTextEntry={passwordVisible}
-                            onFocus={onFocus}
-                            onBlur={onBlur}
                             defaultValue={defaultValue}
                             editable={editable}
                             {...otherProps}
                         />
-                        {(name === 'password' || name === 'confirmPassword') &&
+                        {(name === 'password' || name === 'confirmPassword') && (
                             <Pressable onPress={() => setPasswordVisible(!passwordVisible)}>
-                                <Text>{passwordVisible ? "Show" : "Hide"}</Text>
-                            </Pressable>}
+                                <Text>{passwordVisible ? 'Show' : 'Hide'}</Text>
+                            </Pressable>
+                        )}
                     </View>
                 </>
             )}

@@ -1,17 +1,26 @@
-import { View, Pressable } from 'react-native';
-import { Text } from './ui/text';
 import { FlashList } from '@shopify/flash-list';
+import { View, Pressable } from 'react-native';
+
 import { Card, CardDescription, CardTitle } from './ui';
+import { Text } from './ui/text';
 
 type VideoListProps = {
     data: Video[];
     onSelect: (video: Video) => void;
 };
 
-const VideoListItem = ({ item, index, onPress }: { item: Video, index: number, onPress: (video: Video) => void }) => {
+const VideoListItem = ({
+    item,
+    index,
+    onPress,
+}: {
+    item: Video;
+    index: number;
+    onPress: (video: Video) => void;
+}) => {
     return (
-        <Pressable onPress={() => onPress(item)}>
-            <Card className="max-w-sm self-center items-center justify-evenly w-full gap-2 p-5 border-2 border-black dark:border-white">
+        <Pressable className="my-2" onPress={() => onPress(item)}>
+            <Card className="w-full max-w-sm items-center justify-evenly gap-2 self-center border-2 border-black p-5 dark:border-white">
                 <CardTitle>
                     <Text>{item.title}</Text>
                 </CardTitle>
@@ -25,7 +34,7 @@ const VideoListItem = ({ item, index, onPress }: { item: Video, index: number, o
 
 const VideoList = ({ data, onSelect }: VideoListProps) => {
     return (
-        <View className="flex-1 w-full gap-5 ">
+        <View className="w-full flex-1 gap-5 ">
             <FlashList
                 data={data}
                 renderItem={({ item, index }) => (

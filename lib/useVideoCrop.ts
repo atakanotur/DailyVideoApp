@@ -40,6 +40,7 @@ const useCropVideo = () => {
                 uri: outputPath,
                 title,
                 description,
+                originalUri: uri,
             };
 
             addVideo(newVideo);

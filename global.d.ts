@@ -3,6 +3,7 @@ declare global {
         id: string;
         title: string;
         description: string;
+        originalUri: string;
         uri: string;
     };
 }

@@ -9,7 +9,16 @@
             "output": "static",
             "favicon": "./assets/favicon.png"
         },
-        "plugins": ["expo-router", "expo-video"],
+        "plugins": [
+            "expo-router",
+            [
+                "expo-video",
+                {
+                    "supportsBackgroundPlayback": true,
+                    "supportsPictureInPicture": true
+                }
+            ]
+        ],
         "experiments": {
             "typedRoutes": true,
             "tsconfigPaths": true

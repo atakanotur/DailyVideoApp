@@ -1,10 +1,10 @@
-import { VideoView, useVideoPlayer } from 'expo-video';
-import { StyleProp, ViewStyle, View } from 'react-native';
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { StyleProp, ViewStyle } from 'react-native';
 
-interface VideoPlayerProps {
+type VideoPlayerProps = {
     uri: string;
     style?: StyleProp<ViewStyle>;
-}
+};
 
 const VideoPlayer = ({ uri, style }: VideoPlayerProps) => {
     const player = useVideoPlayer(uri, (player) => {
@@ -12,10 +12,6 @@ const VideoPlayer = ({ uri, style }: VideoPlayerProps) => {
         player.play();
     });
 
-    if (!uri)
-        return (
-            <View className="aspect-video w-full rounded-md border-2 border-primary bg-secondary" />
-        );
     return (
         <VideoView
             style={[{ width: '100%', aspectRatio: 16 / 9, backgroundColor: 'black' }, style]}
