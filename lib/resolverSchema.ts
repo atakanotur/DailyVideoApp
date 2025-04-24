@@ -16,6 +16,16 @@ const useVideoForm = (defaultValues?: Partial<VideoFormFields>) => {
             description: defaultValues?.description || '',
         },
         resolver: zodResolver(videoSchema),
+        errors: {
+            title: {
+                type: 'min',
+                message: 'Title is required',
+            },
+            description: {
+                type: 'min',
+                message: 'Description is required',
+            },
+        },
     });
 };
 
