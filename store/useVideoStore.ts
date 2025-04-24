@@ -14,14 +14,7 @@ type Action = {
 
 const useVideoStore = create<State & Action>((set) => ({
     video: {} as Video,
-    videos: [
-        {
-            id: '1',
-            description: 'Description',
-            title: 'Title',
-            uri: 'uri',
-        },
-    ] as Video[],
+    videos: [] as Video[],
     setVideo: (video) => set(() => ({ video })),
     setVideos: (videos) => set(() => ({ videos })),
     addVideo: (video) => set((state) => ({ videos: [...state.videos, video] })),

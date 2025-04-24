@@ -19,7 +19,7 @@ const EditVideoScreen = () => {
 
     const formData: Partial<VideoFormFields> = {
         title: video.title,
-        description: video.description
+        description: video.description,
     };
     const { control, handleSubmit } = useVideoForm(formData);
 
