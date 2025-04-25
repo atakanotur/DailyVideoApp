@@ -29,9 +29,9 @@ DailyVideoApp is a simple and modern mobile application that allows users to doc
 ### Additional Setup
 
 #### 📚 FFmpeg Installation Resources
+
 - [How to Run FFmpegKit for React Native iOS After Deprecation](https://dev.to/shaquille_hinds_cd216994c/how-to-run-ffmpeg-kit-for-react-native-ios-after-deprecation-1bgc)
 - [Using FFmpegKit Locally in React Native After Retirement](https://dev.to/utkarsh4517/using-ffmpegkit-locally-in-react-native-after-retirement-3a9p)
-
 
 ## 🚀 Installation
 
@@ -48,6 +48,7 @@ cd DailyVideoApp
 ### Additional Setup
 
 #### macOS Users (required for building FFmpegKit locally)
+
 ```bash
 brew install automake libtool pkg-config
 brew reinstall autoconf
@@ -61,6 +62,7 @@ cd react-native
 ```
 
 #### Update the `ffmpeg-kit-react-native.podspec` file
+
 Make sure it looks like this (adjust the dependency name if needed):
 
 ```ruby
@@ -94,6 +96,7 @@ end
 ```
 
 #### iOS Podfile Configuration
+
 After running `npx expo prebuild`, an `ios/Podfile` will be generated. Edit the `Podfile` as shown below:
 
 ```ruby
@@ -108,6 +111,7 @@ end
 ```
 
 #### Final Step
+
 After completing the above setup, return to your main project directory and run the following commands:
 
 ```bash
@@ -125,9 +129,11 @@ Once this is complete, you can return to the root directory and launch the app:
 cd ..
 npx expo run:ios
 ```
+
 ```bash
 npx expo prebuild
 ```
+
 ---
 
 ## 🔧 Usage
@@ -139,5 +145,11 @@ npx expo prebuild
 5. The video segment is trimmed and saved.
 
 [Include screenshots or demo link if available]
+
+![Home Screen](./assets/filledhome.png)
+![Empty Add Screen](./assets/add.png)
+![Add Screen](./assets/filledadd.png)
+![Detail Screen](./assets/detail.png)
+![Edit Screen](./assets/edit.png)
 
 ---
