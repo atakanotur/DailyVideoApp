@@ -144,8 +144,6 @@ npx expo prebuild
 4. Add a title and description to the segment.
 5. The video segment is trimmed and saved.
 
-[Include screenshots or demo link if available]
-
 ![Home Screen](./assets/filledhome.png)
 ![Empty Add Screen](./assets/add.png)
 ![Add Screen](./assets/filledadd.png)
