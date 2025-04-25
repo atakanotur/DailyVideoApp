@@ -17,7 +17,7 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView className="flex-1 items-center justify-center gap-5 bg-secondary/30">
-            <Header iconName="plus" title="SevenAppsRNCase" />
+            <Header iconName="plus" title="DailyVideoApp" />
             <VideoList data={videos} onSelect={onSelectVideo} />
         </SafeAreaView>
     );

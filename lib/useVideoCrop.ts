@@ -3,20 +3,14 @@ import * as Crypto from 'expo-crypto';
 import * as FileSystem from 'expo-file-system';
 import { FFmpegKit } from 'ffmpeg-kit-react-native';
 
-import useVideoStore from '@/store/useVideoStore';
-
 type CropParams = {
     start: number;
     uri: string;
-    title: string;
-    description: string;
 };
 
 const useCropVideo = () => {
-    const addVideo = useVideoStore((state) => state.addVideo);
-
     return useMutation({
-        mutationFn: async ({ start, uri, title, description }: CropParams) => {
+        mutationFn: async ({ start, uri }: CropParams) => {
             const duration = 5;
             const outputDir = FileSystem.documentDirectory + 'croppedVideos/';
 
@@ -35,16 +29,12 @@ const useCropVideo = () => {
 
             const id = Crypto.randomUUID();
 
-            const newVideo = {
+            const croppedVideo: CroppedVideo = {
                 id,
                 uri: outputPath,
-                title,
-                description,
-                originalUri: uri,
             };
 
-            addVideo(newVideo);
-            return newVideo;
+            return croppedVideo;
         },
     });
 };

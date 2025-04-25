@@ -16,6 +16,7 @@ const EditVideoScreen = () => {
 
     const video = useVideoStore((state) => state.video);
     const setVideo = useVideoStore((state) => state.setVideo);
+    const editVideo = useVideoStore((state) => state.editVideoById);
 
     const formData: Partial<VideoFormFields> = {
         title: video.title,
@@ -24,7 +25,7 @@ const EditVideoScreen = () => {
     const { control, handleSubmit } = useVideoForm(formData);
 
     const [videoUri, setVideoUri] = useState<string>(video.originalUri);
-    const [videoDuration, setVideoDuration] = useState<number>(0);
+    const [videoDuration, setVideoDuration] = useState<number>(video.originalDuration);
     const [start, setStart] = useState<number>(0);
 
     const handleSelectVideo = async () => {
@@ -38,10 +39,23 @@ const EditVideoScreen = () => {
     const handleCropVideo = ({ title, description }: { title: string; description: string }) => {
         if (!videoUri) return;
         cropMutation.mutate(
-            { uri: videoUri, start, title, description },
+            { uri: videoUri, start },
             {
-                onSuccess: (newVideo) => {
-                    setVideo(newVideo);
+                onSuccess: (corpedVideo) => {
+                    setVideo({
+                        ...corpedVideo,
+                        title,
+                        description,
+                        originalUri: videoUri,
+                        originalDuration: videoDuration,
+                    });
+                    editVideo(video.id, {
+                        ...corpedVideo,
+                        title,
+                        description,
+                        originalUri: videoUri,
+                        originalDuration: videoDuration,
+                    });
                     router.replace('/(main)/VideoDetailScreen');
                 },
             }
